@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
     lShooter = new SparkMax(0, MotorType.kBrushless);
     rShooter = new SparkMax(1, MotorType.kBrushless);
     controller = new XboxController(0);
+    SparkMaxConfig config = new SparkMax
   }
 
   /**
