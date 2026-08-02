@@ -6,6 +6,8 @@ package frc.robot;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
@@ -31,7 +33,7 @@ public class Robot extends TimedRobot {
     controller = new XboxController(0);
     SparkMaxConfig Config = new SparkMaxConfig();
     Config.inverted(true);
-    lShooter.configure(Config, null, null);
+    lShooter.configure(Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
   /**
