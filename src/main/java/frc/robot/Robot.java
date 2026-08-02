@@ -28,8 +28,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    lShooter = new SparkMax(0, MotorType.kBrushless);
-    rShooter = new SparkMax(1, MotorType.kBrushless);
+    lShooter = new SparkMax(17, MotorType.kBrushless);
+    rShooter = new SparkMax(18, MotorType.kBrushless);
     controller = new XboxController(0);
     SparkMaxConfig Config = new SparkMaxConfig();
     Config.inverted(true);
