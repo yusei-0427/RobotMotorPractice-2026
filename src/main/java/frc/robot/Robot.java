@@ -5,6 +5,7 @@
 package frc.robot;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
@@ -28,7 +29,9 @@ public class Robot extends TimedRobot {
     lShooter = new SparkMax(0, MotorType.kBrushless);
     rShooter = new SparkMax(1, MotorType.kBrushless);
     controller = new XboxController(0);
-    SparkMaxConfig config = new SparkMax
+    SparkMaxConfig Config = new SparkMaxConfig();
+    Config.inverted(true);
+    lShooter.configure(Config, null, null);
   }
 
   /**
