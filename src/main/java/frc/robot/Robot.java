@@ -54,8 +54,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     if (controller.getXButton()) {
-      lShooter.set(0.2);
-      rShooter.set(0.2);
+      lShooter.set(0.4);
+      rShooter.set(0.4);
     } else {
       lShooter.set(0.0);
       rShooter.set(0.0);
