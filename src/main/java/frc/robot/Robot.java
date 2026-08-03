@@ -36,20 +36,6 @@ public class Robot extends TimedRobot {
     lShooter.configure(Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
-  /**
-   * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
-   * that you want ran during disabled, autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before LiveWindow and
-   * SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() {}
-
-  /** This function is called once when teleop is enabled. */
-  @Override
-  public void teleopInit() {}
-
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
@@ -61,28 +47,4 @@ public class Robot extends TimedRobot {
       rShooter.set(0.0);
     }
   }
-
-  /** This function is called once when the robot is disabled. */
-  @Override
-  public void disabledInit() {}
-
-  /** This function is called periodically when disabled. */
-  @Override
-  public void disabledPeriodic() {}
-
-  /** This function is called once when test mode is enabled. */
-  @Override
-  public void testInit() {}
-
-  /** This function is called periodically during test mode. */
-  @Override
-  public void testPeriodic() {}
-
-  /** This function is called once when the robot is first started up. */
-  @Override
-  public void simulationInit() {}
-
-  /** This function is called periodically whilst in simulation. */
-  @Override
-  public void simulationPeriodic() {}
 }
