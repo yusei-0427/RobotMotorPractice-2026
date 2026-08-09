@@ -38,7 +38,6 @@ public class Robot extends TimedRobot {
     rShooter = new SparkMax(17, MotorType.kBrushless);
     controller = new XboxController(0);
 
-    // Configure the PID loop that runs on the Spark MAX, using its built-in encoder for feedback.
     SparkMaxConfig leftConfig = new SparkMaxConfig();
     leftConfig
         .inverted(true)
@@ -46,7 +45,6 @@ public class Robot extends TimedRobot {
         .pid(0.0001, 0.0, 0.0);
     lShooter.configure(leftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-    // Only the left shooter is inverted. The right shooter uses the same PID gains normally.
     SparkMaxConfig rightConfig = new SparkMaxConfig();
     rightConfig.closedLoop.pid(0.0001, 0.0, 0.0);
     rShooter.configure(rightConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
