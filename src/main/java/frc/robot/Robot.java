@@ -21,12 +21,12 @@ import edu.wpi.first.wpilibj.XboxController;
  * this project, you must also update the Main.java file in the project.
  */
 public class Robot extends TimedRobot {
-  private SparkMax lShooter;
-  private SparkMax rShooter;
+  private SparkMax motor;
+  private SparkMax followermotor;
   private XboxController controller;
-  private SparkClosedLoopController leftShooterController;
-  private SparkClosedLoopController rightShooterController;
-  private static final double MAX_RPM = 3000.0;
+  private SparkClosedLoopController pid;
+  private SparkClosedLoopController followerpid;
+  private static final double MAX_RPM =5676.0;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -34,34 +34,31 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    lShooter = new SparkMax(18, MotorType.kBrushless);
-    rShooter = new SparkMax(17, MotorType.kBrushless);
+    motor = new SparkMax(18, MotorType.kBrushless);
+    followermotor = new SparkMax(17, MotorType.kBrushless);
     controller = new XboxController(0);
 
-    SparkMaxConfig leftConfig = new SparkMaxConfig();
-    leftConfig
-        .inverted(true)
-        .closedLoop
-        .pid(0.0001, 0.0, 0.0);
-    lShooter.configure(leftConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    SparkMaxConfig config = new SparkMaxConfig();
+    config.inverted(true).closedLoop.pid(0.0002, 0.0000002, 0.02);
+    motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-    SparkMaxConfig rightConfig = new SparkMaxConfig();
-    rightConfig.closedLoop.pid(0.0001, 0.0, 0.0);
-    rShooter.configure(rightConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    SparkMaxConfig followerconfig = new SparkMaxConfig();
+    followerconfig.follow(motor, true);
+    config.inverted(true);
 
-    leftShooterController = lShooter.getClosedLoopController();
-    rightShooterController = rShooter.getClosedLoopController();
+    pid = motor.getClosedLoopController();
+    followerpid =  followermotor.getClosedLoopController();
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
     if (controller.getXButton()) {
-      leftShooterController.setSetpoint(MAX_RPM, ControlType.kVelocity);
-      rightShooterController.setSetpoint(MAX_RPM, ControlType.kVelocity);
+      pid.setSetpoint(MAX_RPM, ControlType.kVelocity);
+      followerpid.setSetpoint(MAX_RPM, ControlType.kVelocity);
     } else {
-      lShooter.set(0.0);
-      rShooter.set(0.0);
+      motor.set(0.0);
+      followermotor.set(0.0);
     }
   }
 }
