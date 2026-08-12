@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
   private XboxController controller;
   private SparkClosedLoopController pid;
   private SparkClosedLoopController followerpid;
-  private static final double MAX_RPM =5676.0;
+  private static final double MAX_RPM =3000.0;
 
   /**
    * This function is run when the robot is first started up and should be used for any
